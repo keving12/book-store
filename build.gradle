@@ -1,0 +1,37 @@
+group 'com.kgracie.mytutor'
+version '1.0-SNAPSHOT'
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'groovy'
+
+
+
+
+    sourceCompatibility = 11
+
+    repositories {
+        mavenCentral()
+    }
+
+    afterEvaluate {
+        compileJava {
+            inputs.property("moduleName", moduleName)
+            doFirst {
+                options.compilerArgs = [
+                        '--module-path', classpath.asPath
+                ]
+                classpath = files()
+            }
+        }
+    }
+
+    dependencies {
+        compile 'org.codehaus.groovy:groovy-all:2.3.11'
+        testImplementation "org.codehaus.groovy:groovy-all:${groovyVersion}"
+        testImplementation "org.spockframework:spock-core:${spockVersion}"
+        testImplementation "org.mockito:mockito-all:${mockitoVersion}"
+        testImplementation "org.assertj:assertj-core:${assertjVersion}"
+        testImplementation "cglib:cglib-nodep:${cglibNoDepVersion}"
+    }
+}

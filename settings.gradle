@@ -1,0 +1,6 @@
+rootProject.name = 'mytutor-test'
+
+include 'book-sales'
+include 'book-reports'
+//include 'book-store'
+include 'transaction-store'
