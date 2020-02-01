@@ -4,9 +4,9 @@ public interface BookRepository {
 
     Integer checkBookStock(String bookTitle);
 
-    void incremementBookStock(String bookTitle, int quantity);
+    Integer incremementBookStock(String bookTitle, int quantity);
 
-    void decrementBookStock(String bookTitle, int quantity);
+    Integer decrementBookStock(String bookTitle, int quantity);
 
 
 }
