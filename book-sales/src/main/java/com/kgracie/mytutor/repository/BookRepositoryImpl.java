@@ -26,16 +26,24 @@ public class BookRepositoryImpl implements BookRepository {
 
     @Override
     public Integer checkBookStock(String bookTitle) {
-        return null;
+        return bookStore.get(bookTitle);
     }
 
     @Override
-    public Integer incremementBookStock(String bookTitle, int quantity) {
-        return null;
+    public Integer incrementBookStock(String bookTitle, int quantity) {
+        int bookCount = bookStore.get(bookTitle);
+        int newBookCount = bookCount + quantity;
+        bookStore.put(bookTitle, newBookCount);
+
+        return newBookCount;
     }
 
     @Override
     public Integer decrementBookStock(String bookTitle, int quantity) {
-        return null;
+        int bookCount = bookStore.get(bookTitle);
+        int newBookCount = bookCount - quantity;
+        bookStore.put(bookTitle, newBookCount);
+
+        return newBookCount;
     }
 }
