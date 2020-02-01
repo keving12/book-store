@@ -15,36 +15,45 @@ class BookRepositoryImplSpec extends Specification {
 
     def 'initial state should be each book with a quantity of 10 each'() {
         when:
-        def bookCount = bookRepository.checkBookStock(bookTitle)
+        def book = bookRepository.fetchBook(bookTitle)
 
         then:
-        bookCount == 10
+        book.title == bookTitle
+        book.price == price
+        book.quantity == 10
 
         where:
-        bookTitle << ['Book A', 'Book B', 'Book C', 'Book D','Book E']
+        bookTitle   | price
+        'Book A'    | 25.00
+        'Book B'    | 20.00
+        'Book C'    | 23.00
+        'Book D'    | 30.00
+        'Book E'    | 27.00
     }
 
     def 'should return null when book does not exist'() {
         when:
-        def bookCount = bookRepository.checkBookStock('Book X')
+        def book = bookRepository.fetchBook('Book X')
 
         then:
-        bookCount == null
+        book == null
     }
 
-    def 'should return new stock count when book stock incremented'() {
+    def 'should increment book stock'() {
         when:
-        def newBookCount = bookRepository.incrementBookStock('Book A', 3)
+        bookRepository.incrementBookStock('Book A', 3)
 
         then:
-        newBookCount == 13
+        def bookA = bookRepository.fetchBook('Book A')
+        bookA.quantity == 13
     }
 
-    def 'should return new stock count when book stock decremented'() {
+    def 'should decrement book stock'() {
         when:
-        def newBookCount = bookRepository.decrementBookStock('Book B', 3)
+        bookRepository.decrementBookStock('Book B', 3)
 
         then:
-        newBookCount == 7
+        def bookB = bookRepository.fetchBook('Book B')
+        bookB.quantity == 7
     }
 }

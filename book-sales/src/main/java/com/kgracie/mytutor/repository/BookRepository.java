@@ -1,10 +1,12 @@
 package com.kgracie.mytutor.repository;
 
+import com.kgracie.mytutor.domain.Book;
+
 public interface BookRepository {
 
-    Integer checkBookStock(String bookTitle);
+    Book fetchBook(String bookTitle);
 
-    Integer incrementBookStock(String bookTitle, int quantity);
+    void incrementBookStock(String bookTitle, int quantity);
 
-    Integer decrementBookStock(String bookTitle, int quantity);
+    void decrementBookStock(String bookTitle, int quantity);
 }
