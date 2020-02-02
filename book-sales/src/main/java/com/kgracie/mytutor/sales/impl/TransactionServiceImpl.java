@@ -4,11 +4,13 @@ import com.kgracie.mytutor.sales.api.TransactionService;
 import com.kgracie.mytutor.sales.domain.Transaction;
 import com.kgracie.mytutor.sales.domain.TransactionType;
 import com.kgracie.mytutor.sales.repository.TransactionRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 import static com.kgracie.mytutor.sales.domain.TransactionType.*;
 
+@Service
 public class TransactionServiceImpl implements TransactionService {
 
     private final TransactionRepository transactionRepository;

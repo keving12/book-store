@@ -27,11 +27,26 @@ subprojects {
     }
 
     dependencies {
-        compile 'org.codehaus.groovy:groovy-all:2.3.11'
+        implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}") {
+            exclude(module: 'javax.annotation-api')
+            exclude(module: 'java-annotation')
+            exclude(module: 'spring-boot-starter-logging')
+        }
+
         testImplementation "org.codehaus.groovy:groovy-all:${groovyVersion}"
         testImplementation "org.spockframework:spock-core:${spockVersion}"
         testImplementation "org.mockito:mockito-all:${mockitoVersion}"
         testImplementation "org.assertj:assertj-core:${assertjVersion}"
         testImplementation "cglib:cglib-nodep:${cglibNoDepVersion}"
+    }
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
     }
 }

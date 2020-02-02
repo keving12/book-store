@@ -6,7 +6,9 @@ import com.kgracie.mytutor.sales.domain.Book;
 import com.kgracie.mytutor.sales.domain.BookSalesResponse;
 import com.kgracie.mytutor.sales.domain.TransactionType;
 import com.kgracie.mytutor.sales.repository.BookRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class BookSalesServiceImpl implements BookSalesService {
 
     private final BookRepository bookRepository;

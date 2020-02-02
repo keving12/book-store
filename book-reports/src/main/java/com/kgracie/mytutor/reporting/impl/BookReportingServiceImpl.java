@@ -6,6 +6,7 @@ import com.kgracie.mytutor.reporting.domain.SummedTransaction;
 import com.kgracie.mytutor.sales.api.TransactionService;
 import com.kgracie.mytutor.sales.domain.Transaction;
 import com.kgracie.mytutor.sales.domain.TransactionType;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
 
+@Service
 public class BookReportingServiceImpl implements BookReportingService {
 
     private final TransactionService transactionService;

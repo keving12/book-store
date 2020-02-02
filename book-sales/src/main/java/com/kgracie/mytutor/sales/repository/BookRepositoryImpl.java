@@ -1,10 +1,12 @@
 package com.kgracie.mytutor.sales.repository;
 
 import com.kgracie.mytutor.sales.domain.Book;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public class BookRepositoryImpl implements BookRepository {
 
     private Map<String, Book> bookStore = new HashMap<>();

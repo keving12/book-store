@@ -1,1 +1,14 @@
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    implementation project(':book-reports')
+    implementation project(':book-sales')
+
+    implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}") {
+        exclude(module: 'javax.annotation-api')
+        exclude(module: 'java-annotation')
+        exclude(module: 'spring-boot-starter-logging')
+    }
+}
+
 ext.moduleName = 'com.kgracie.mytutor.bookstore'

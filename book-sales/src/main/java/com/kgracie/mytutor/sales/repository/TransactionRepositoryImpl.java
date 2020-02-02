@@ -1,10 +1,12 @@
 package com.kgracie.mytutor.sales.repository;
 
 import com.kgracie.mytutor.sales.domain.Transaction;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class TransactionRepositoryImpl implements TransactionRepository {
 
     private List<Transaction> transactions = new ArrayList<>();
