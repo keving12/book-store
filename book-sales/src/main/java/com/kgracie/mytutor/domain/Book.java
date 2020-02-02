@@ -5,12 +5,12 @@ import java.util.Objects;
 public class Book {
     private final String title;
     private final double price;
-    private final int quantity;
+    private final int stock;
 
-    public Book(String title, double price, int quantity) {
+    public Book(String title, double price, int stock) {
         this.title = title;
         this.price = price;
-        this.quantity = quantity;
+        this.stock = stock;
     }
 
     public String getTitle() {
@@ -21,8 +21,8 @@ public class Book {
         return price;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getStock() {
+        return stock;
     }
 
     @Override
@@ -31,12 +31,12 @@ public class Book {
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
         return Double.compare(book.price, price) == 0 &&
-                quantity == book.quantity &&
+                stock == book.stock &&
                 Objects.equals(title, book.title);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, price, quantity);
+        return Objects.hash(title, price, stock);
     }
 }

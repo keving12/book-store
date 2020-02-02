@@ -20,7 +20,7 @@ class BookRepositoryImplSpec extends Specification {
         then:
         book.title == bookTitle
         book.price == price
-        book.quantity == 10
+        book.stock == 10
 
         where:
         bookTitle   | price
@@ -45,7 +45,7 @@ class BookRepositoryImplSpec extends Specification {
 
         then:
         def bookA = bookRepository.fetchBook('Book A')
-        bookA.quantity == 13
+        bookA.stock == 13
     }
 
     def 'should decrement book stock'() {
@@ -54,6 +54,6 @@ class BookRepositoryImplSpec extends Specification {
 
         then:
         def bookB = bookRepository.fetchBook('Book B')
-        bookB.quantity == 7
+        bookB.stock == 7
     }
 }
