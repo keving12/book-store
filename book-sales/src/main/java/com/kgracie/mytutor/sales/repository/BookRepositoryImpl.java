@@ -1,6 +1,6 @@
-package com.kgracie.mytutor.repository;
+package com.kgracie.mytutor.sales.repository;
 
-import com.kgracie.mytutor.domain.Book;
+import com.kgracie.mytutor.sales.domain.Book;
 
 import java.util.HashMap;
 import java.util.Map;

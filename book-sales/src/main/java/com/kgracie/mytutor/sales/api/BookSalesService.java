@@ -1,6 +1,6 @@
-package com.kgracie.mytutor.api;
+package com.kgracie.mytutor.sales.api;
 
-import com.kgracie.mytutor.domain.BookSalesResponse;
+import com.kgracie.mytutor.sales.domain.BookSalesResponse;
 
 public interface BookSalesService {
 

@@ -1,9 +1,9 @@
-package com.kgracie.mytutor.service
+package com.kgracie.mytutor.sales
 
-import com.kgracie.mytutor.domain.Transaction
-import com.kgracie.mytutor.domain.TransactionType
-import com.kgracie.mytutor.impl.TransactionServiceImpl
-import com.kgracie.mytutor.repository.TransactionRepository
+import com.kgracie.mytutor.sales.domain.Transaction
+import com.kgracie.mytutor.sales.domain.TransactionType
+import com.kgracie.mytutor.sales.impl.TransactionServiceImpl
+import com.kgracie.mytutor.sales.repository.TransactionRepository
 import spock.lang.Specification
 import spock.lang.Unroll
 

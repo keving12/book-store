@@ -1,13 +1,13 @@
-package com.kgracie.mytutor.impl;
+package com.kgracie.mytutor.sales.impl;
 
-import com.kgracie.mytutor.api.TransactionService;
-import com.kgracie.mytutor.domain.Transaction;
-import com.kgracie.mytutor.domain.TransactionType;
-import com.kgracie.mytutor.repository.TransactionRepository;
+import com.kgracie.mytutor.sales.api.TransactionService;
+import com.kgracie.mytutor.sales.domain.Transaction;
+import com.kgracie.mytutor.sales.domain.TransactionType;
+import com.kgracie.mytutor.sales.repository.TransactionRepository;
 
 import java.util.List;
 
-import static com.kgracie.mytutor.domain.TransactionType.*;
+import static com.kgracie.mytutor.sales.domain.TransactionType.*;
 
 public class TransactionServiceImpl implements TransactionService {
 

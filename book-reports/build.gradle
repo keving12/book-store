@@ -1,1 +1,5 @@
+dependencies {
+    implementation project(":book-sales")
+}
+
 ext.moduleName = 'com.kgracie.mytutor.bookreports'

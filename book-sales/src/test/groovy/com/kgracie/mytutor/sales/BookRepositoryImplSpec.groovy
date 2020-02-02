@@ -1,6 +1,6 @@
-package com.kgracie.mytutor.service
+package com.kgracie.mytutor.sales
 
-import com.kgracie.mytutor.repository.BookRepositoryImpl
+import com.kgracie.mytutor.sales.repository.BookRepositoryImpl
 import spock.lang.Specification
 import spock.lang.Unroll
 

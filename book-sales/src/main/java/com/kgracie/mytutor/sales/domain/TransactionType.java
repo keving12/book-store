@@ -1,4 +1,4 @@
-package com.kgracie.mytutor.domain;
+package com.kgracie.mytutor.sales.domain;
 
 public enum TransactionType {
 

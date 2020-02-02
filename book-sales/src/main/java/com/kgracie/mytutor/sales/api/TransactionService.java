@@ -1,7 +1,7 @@
-package com.kgracie.mytutor.api;
+package com.kgracie.mytutor.sales.api;
 
-import com.kgracie.mytutor.domain.Transaction;
-import com.kgracie.mytutor.domain.TransactionType;
+import com.kgracie.mytutor.sales.domain.Transaction;
+import com.kgracie.mytutor.sales.domain.TransactionType;
 
 import java.util.List;
 

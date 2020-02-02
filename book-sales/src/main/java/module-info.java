@@ -1,4 +1,4 @@
 module com.kgracie.mytutor.booksales {
-    exports com.kgracie.mytutor.api;
-    exports com.kgracie.mytutor.domain;
+    exports com.kgracie.mytutor.sales.api;
+    exports com.kgracie.mytutor.sales.domain;
 }

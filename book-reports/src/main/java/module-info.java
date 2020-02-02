@@ -1,4 +1,6 @@
 module com.kgracie.mytutor.bookreports {
-        exports com.kgracie.mytutor.api;
-//        exports com.kgracie.mytutor.domain;
+        requires com.kgracie.mytutor.booksales;
+
+        exports com.kgracie.mytutor.reporting.api;
+//        exports com.kgracie.mytutor.sales.domain;
 }

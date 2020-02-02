@@ -1,11 +1,11 @@
-package com.kgracie.mytutor.impl;
+package com.kgracie.mytutor.sales.impl;
 
-import com.kgracie.mytutor.api.BookSalesService;
-import com.kgracie.mytutor.api.TransactionService;
-import com.kgracie.mytutor.domain.Book;
-import com.kgracie.mytutor.domain.BookSalesResponse;
-import com.kgracie.mytutor.domain.TransactionType;
-import com.kgracie.mytutor.repository.BookRepository;
+import com.kgracie.mytutor.sales.api.BookSalesService;
+import com.kgracie.mytutor.sales.api.TransactionService;
+import com.kgracie.mytutor.sales.domain.Book;
+import com.kgracie.mytutor.sales.domain.BookSalesResponse;
+import com.kgracie.mytutor.sales.domain.TransactionType;
+import com.kgracie.mytutor.sales.repository.BookRepository;
 
 public class BookSalesServiceImpl implements BookSalesService {
 

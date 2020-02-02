@@ -1,6 +1,6 @@
-package com.kgracie.mytutor.repository;
+package com.kgracie.mytutor.sales.repository;
 
-import com.kgracie.mytutor.domain.Transaction;
+import com.kgracie.mytutor.sales.domain.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
