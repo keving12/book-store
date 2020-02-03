@@ -28,7 +28,6 @@ public class BookReportingServiceImpl implements BookReportingService {
         List<Transaction> transactions = transactionService.retrieveTransactions();
 
         Map<String, List<Transaction>> groupedTransactions = transactions.stream()
-                .filter(transaction -> transaction.getTransactionType() == TransactionType.SALE)
                 .collect(groupingBy(Transaction::getTitle));
 
         StringBuilder builder = new StringBuilder();
@@ -53,7 +52,9 @@ public class BookReportingServiceImpl implements BookReportingService {
     }
 
     private int sumQuantitySold(List<Transaction> transactions) {
-        return transactions.stream().map(Transaction::getQuantity).reduce(0, Integer::sum);
+        return transactions.stream()
+                .filter(transaction -> transaction.getTransactionType() == TransactionType.SALE)
+                .map(Transaction::getQuantity).reduce(0, Integer::sum);
     }
 
     private double sumTransactionAmount(List<Transaction> transactions) {

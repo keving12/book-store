@@ -74,7 +74,7 @@ class TransactionServiceImplSpec extends Specification {
 
         where:
         transactionType             | title    | quantity | unitPrice  | transactionValue
-        TransactionType.PURCHASE    | 'Book A' | 2        | 10.00      | 14.00
-        TransactionType.PURCHASE    | 'Book C' | 10       | 20.00      | 140.00
+        TransactionType.PURCHASE    | 'Book A' | 2        | 10.00      | -14.00
+        TransactionType.PURCHASE    | 'Book C' | 10       | 20.00      | -140.00
     }
 }

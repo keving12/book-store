@@ -28,8 +28,9 @@ public class TransactionServiceImpl implements TransactionService {
     public void recordTransaction(TransactionType transactionType, String title, int quantity, double unitPrice) {
         double multiplier = transactionType == PURCHASE ? 0.7 : 1;
         double transactionAmount = (unitPrice * multiplier) * quantity;
+        double signedTransactionAmount = transactionType == PURCHASE ? -transactionAmount : transactionAmount;
 
-        Transaction transaction = new Transaction(transactionType, title, quantity, transactionAmount);
+        Transaction transaction = new Transaction(transactionType, title, quantity, signedTransactionAmount);
         transactionRepository.recordBookTransaction(transaction);
     }
 }
