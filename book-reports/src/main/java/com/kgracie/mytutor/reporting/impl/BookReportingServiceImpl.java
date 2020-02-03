@@ -46,8 +46,6 @@ public class BookReportingServiceImpl implements BookReportingService {
                 .forEach(summed -> builder.append(
                         String.format("%s | %d Copies Sold | £%.2f Total Profit\n", summed.getTitle(), summed.getNumberOfCopiesSold(), summed.getTotalProfit())));
 
-        System.out.println(builder.toString());
-
         return builder.toString();
     }
 
