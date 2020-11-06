@@ -39,4 +39,29 @@ public class Book {
     public int hashCode() {
         return Objects.hash(title, price, stock);
     }
+
+    public static final class Builder {
+        private String title;
+        private double price;
+        private int stock;
+
+        public Builder title(String title) {
+            this.title = title;
+            return this;
+        }
+
+        public Builder price(double price) {
+            this.price = price;
+            return this;
+        }
+
+        public Builder stock(int stock) {
+            this.stock = stock;
+            return this;
+        }
+
+        public Book build() {
+            return new Book(title, price, stock);
+        }
+    }
 }

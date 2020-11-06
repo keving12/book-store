@@ -3,12 +3,8 @@ version '1.0-SNAPSHOT'
 
 subprojects {
     apply plugin: 'java'
-    apply plugin: 'groovy'
 
-
-
-
-    sourceCompatibility = 11
+    sourceCompatibility = 14
 
     repositories {
         mavenCentral()
@@ -26,6 +22,10 @@ subprojects {
         }
     }
 
+    test {
+        useJUnitPlatform()
+    }
+
     dependencies {
         implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}") {
             exclude(module: 'javax.annotation-api')
@@ -33,11 +33,12 @@ subprojects {
             exclude(module: 'spring-boot-starter-logging')
         }
 
-        testImplementation "org.codehaus.groovy:groovy-all:${groovyVersion}"
-        testImplementation "org.spockframework:spock-core:${spockVersion}"
-        testImplementation "org.mockito:mockito-all:${mockitoVersion}"
+        testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+        testImplementation "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+        testImplementation "org.junit.jupiter:junit-jupiter-params:${junitVersion}"
+        testImplementation "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
         testImplementation "org.assertj:assertj-core:${assertjVersion}"
-        testImplementation "cglib:cglib-nodep:${cglibNoDepVersion}"
+
     }
 }
 
