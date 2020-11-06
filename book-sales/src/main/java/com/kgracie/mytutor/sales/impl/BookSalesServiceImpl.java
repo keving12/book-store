@@ -28,14 +28,14 @@ public class BookSalesServiceImpl implements BookSalesService {
             return new BookSalesResponse("Sorry, we do not stock the book requested");
         }
 
-        if(book.getStock() < quantity) {
+        if(book.stock() < quantity) {
             return new BookSalesResponse("Sorry, we are out of stock.");
         }
 
-        recordTransactionAndReturnSuccessMessage(bookTitle, quantity, book.getPrice());
+        recordTransactionAndReturnSuccessMessage(bookTitle, quantity, book.price());
 
-        if(book.getStock() - quantity < 3) {
-            restockBookAndRecordTransaction(bookTitle, book.getPrice());
+        if(book.stock() - quantity < 3) {
+            restockBookAndRecordTransaction(bookTitle, book.price());
         }
 
         return new BookSalesResponse("Thank you for your purchase!");

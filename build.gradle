@@ -10,12 +10,23 @@ subprojects {
         mavenCentral()
     }
 
+    tasks.withType(JavaCompile) {
+        options.compilerArgs += "--enable-preview"
+    }
+    tasks.withType(Test) {
+        jvmArgs += "--enable-preview"
+    }
+    tasks.withType(JavaExec) {
+        jvmArgs += "--enable-preview"
+    }
+
     afterEvaluate {
         compileJava {
             inputs.property("moduleName", moduleName)
             doFirst {
                 options.compilerArgs = [
-                        '--module-path', classpath.asPath
+                        '--module-path', classpath.asPath,
+                        '--enable-preview'
                 ]
                 classpath = files()
             }

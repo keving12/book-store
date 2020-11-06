@@ -35,16 +35,16 @@ public class BookRepositoryImpl implements BookRepository {
     @Override
     public void incrementBookStock(String bookTitle, int quantity) {
         Book book = bookStore.get(bookTitle);
-        bookStore.put(bookTitle, bookWithNewQuantity(book, book.getStock() + quantity));
+        bookStore.put(bookTitle, bookWithNewQuantity(book, book.stock() + quantity));
     }
 
     @Override
     public void decrementBookStock(String bookTitle, int quantity) {
         Book book = bookStore.get(bookTitle);
-        bookStore.put(bookTitle, bookWithNewQuantity(book, book.getStock() - quantity));
+        bookStore.put(bookTitle, bookWithNewQuantity(book, book.stock() - quantity));
     }
 
     private Book bookWithNewQuantity(Book book, int newQuantity) {
-        return new Book(book.getTitle(), book.getPrice(), newQuantity);
+        return new Book(book.title(), book.price(), newQuantity);
     }
 }

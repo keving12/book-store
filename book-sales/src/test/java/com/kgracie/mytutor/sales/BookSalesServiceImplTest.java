@@ -2,7 +2,7 @@ package com.kgracie.mytutor.sales;
 
 import com.kgracie.mytutor.sales.api.BookSalesService;
 import com.kgracie.mytutor.sales.api.TransactionService;
-import com.kgracie.mytutor.sales.domain.Book;
+import com.kgracie.mytutor.sales.domain.BookBuilder;
 import com.kgracie.mytutor.sales.domain.TransactionType;
 import com.kgracie.mytutor.sales.impl.BookSalesServiceImpl;
 import com.kgracie.mytutor.sales.repository.BookRepository;
@@ -41,7 +41,7 @@ public class BookSalesServiceImplTest {
             "Book A, 10, 3"
     })
     void shouldReduceBookCountWhenEnoughStockToCoverPurchase(String title, int stockLevel, int quantity) {
-        var book = new Book.Builder()
+        var book = BookBuilder.newInstance()
                 .title(title)
                 .price(10.00)
                 .stock(stockLevel)
@@ -62,7 +62,7 @@ public class BookSalesServiceImplTest {
             "Book A, 4, 5"
     })
     void shouldNotChangeStockCountWhenNotEnoughStock(String title, int stockLevel, int quantity) {
-        var book = new Book.Builder()
+        var book = BookBuilder.newInstance()
                 .title(title)
                 .price(10.00)
                 .stock(stockLevel)
@@ -83,7 +83,7 @@ public class BookSalesServiceImplTest {
             "Book A, 2, 3, 'Sorry, we are out of stock.'"
     })
     void shouldReturnMessageIndicatingBookPurchaseSuccessOrFailure(String title, int stockLevel, int quantity, String expectedMessage) {
-        var book = new Book.Builder()
+        var book = BookBuilder.newInstance()
                 .title(title)
                 .price(15.00)
                 .stock(stockLevel)
@@ -93,7 +93,7 @@ public class BookSalesServiceImplTest {
 
         var result = bookSalesService.processBookSale(title, quantity);
 
-        assertThat(result.getResponseMessage()).isEqualTo(expectedMessage);
+        assertThat(result.responseMessage()).isEqualTo(expectedMessage);
     }
 
     @Test
@@ -104,13 +104,13 @@ public class BookSalesServiceImplTest {
 
         var result = bookSalesService.processBookSale(bookTitle, 1);
 
-        assertThat(result.getResponseMessage()).isEqualTo("Sorry, we do not stock the book requested");
+        assertThat(result.responseMessage()).isEqualTo("Sorry, we do not stock the book requested");
     }
 
     @Test
     void shouldBuyMoreBookWhenStockLevelBelow3AfterSale() {
         var bookTitle = "Book X";
-        var book = new Book.Builder()
+        var book = BookBuilder.newInstance()
                 .title(bookTitle)
                 .price(10.00)
                 .stock(4)

@@ -2,6 +2,7 @@ package com.kgracie.mytutor.sales.impl;
 
 import com.kgracie.mytutor.sales.api.TransactionService;
 import com.kgracie.mytutor.sales.domain.Transaction;
+import com.kgracie.mytutor.sales.domain.TransactionBuilder;
 import com.kgracie.mytutor.sales.domain.TransactionType;
 import com.kgracie.mytutor.sales.repository.TransactionRepository;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,13 @@ public class TransactionServiceImpl implements TransactionService {
         double transactionAmount = (unitPrice * multiplier) * quantity;
         double signedTransactionAmount = transactionType == PURCHASE ? -transactionAmount : transactionAmount;
 
-        Transaction transaction = new Transaction(transactionType, title, quantity, signedTransactionAmount);
+        var transaction = TransactionBuilder.newInstance()
+                .transactionType(transactionType)
+                .title(title)
+                .quantity(quantity)
+                .value(signedTransactionAmount)
+                .build();
+
         transactionRepository.recordBookTransaction(transaction);
     }
 }

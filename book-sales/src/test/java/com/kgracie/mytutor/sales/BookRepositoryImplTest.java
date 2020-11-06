@@ -29,9 +29,9 @@ public class BookRepositoryImplTest {
     void shouldHaveInitialStateWithBooksOf10(String bookTitle, double price) {
         var book = bookRepository.fetchBook(bookTitle);
 
-        assertThat(book.getTitle()).isEqualTo(bookTitle);
-        assertThat(book.getPrice()).isEqualTo(price);
-        assertThat(book.getStock()).isEqualTo(10);
+        assertThat(book.title()).isEqualTo(bookTitle);
+        assertThat(book.price()).isEqualTo(price);
+        assertThat(book.stock()).isEqualTo(10);
     }
 
     @Test
@@ -44,7 +44,7 @@ public class BookRepositoryImplTest {
         bookRepository.incrementBookStock("Book A", 3);
 
         var bookA = bookRepository.fetchBook("Book A");
-        assertThat(bookA.getStock()).isEqualTo(13);
+        assertThat(bookA.stock()).isEqualTo(13);
     }
 
     @Test
@@ -52,6 +52,6 @@ public class BookRepositoryImplTest {
         bookRepository.decrementBookStock("Book A", 3);
 
         var bookB = bookRepository.fetchBook("Book B");
-        assertThat(bookB.getStock()).isEqualTo(10);
+        assertThat(bookB.stock()).isEqualTo(10);
     }
 }

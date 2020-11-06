@@ -3,6 +3,7 @@ package com.kgracie.mytutor.reporting.impl;
 import com.kgracie.mytutor.reporting.api.BookReportingService;
 import com.kgracie.mytutor.reporting.comparators.SummedTransactionComparator;
 import com.kgracie.mytutor.reporting.domain.SummedTransaction;
+import com.kgracie.mytutor.reporting.domain.SummedTransactionBuilder;
 import com.kgracie.mytutor.sales.api.TransactionService;
 import com.kgracie.mytutor.sales.domain.Transaction;
 import com.kgracie.mytutor.sales.domain.TransactionType;
@@ -28,13 +29,13 @@ public class BookReportingServiceImpl implements BookReportingService {
         List<Transaction> transactions = transactionService.retrieveTransactions();
 
         Map<String, List<Transaction>> groupedTransactions = transactions.stream()
-                .collect(groupingBy(Transaction::getTitle));
+                .collect(groupingBy(Transaction::title));
 
         StringBuilder builder = new StringBuilder();
 
         List<SummedTransaction> summedTransactions = groupedTransactions.entrySet().stream()
                 .map(entry ->
-                        new SummedTransaction.Builder()
+                        SummedTransactionBuilder.newInstance()
                                 .title(entry.getKey())
                                 .numberOfCopiesSold(sumQuantitySold(entry.getValue()))
                                 .totalProfit(sumTransactionAmount(entry.getValue()))
@@ -44,19 +45,19 @@ public class BookReportingServiceImpl implements BookReportingService {
 
         summedTransactions.stream()
                 .forEach(summed -> builder.append(
-                        String.format("%s | %d Copies Sold | £%.2f Total Profit\n", summed.getTitle(), summed.getNumberOfCopiesSold(), summed.getTotalProfit())));
+                        String.format("%s | %d Copies Sold | £%.2f Total Profit\n", summed.title(), summed.numberOfCopiesSold(), summed.totalProfit())));
 
         return builder.toString();
     }
 
     private int sumQuantitySold(List<Transaction> transactions) {
         return transactions.stream()
-                .filter(transaction -> transaction.getTransactionType() == TransactionType.SALE)
-                .map(Transaction::getQuantity).reduce(0, Integer::sum);
+                .filter(transaction -> transaction.transactionType() == TransactionType.SALE)
+                .map(Transaction::quantity).reduce(0, Integer::sum);
     }
 
     private double sumTransactionAmount(List<Transaction> transactions) {
-        return transactions.stream().map(Transaction::getValue).reduce(0.0, Double::sum);
+        return transactions.stream().map(Transaction::value).reduce(0.0, Double::sum);
     }
 
 }

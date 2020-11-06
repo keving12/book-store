@@ -1,6 +1,6 @@
 package com.kgracie.mytutor.bookstore.web;
 
-import com.kgracie.mytutor.sales.domain.Transaction;
+import com.kgracie.mytutor.sales.domain.TransactionBuilder;
 import com.kgracie.mytutor.sales.domain.TransactionType;
 import com.kgracie.mytutor.sales.repository.TransactionRepository;
 import org.junit.jupiter.api.Test;
@@ -31,7 +31,7 @@ public class BookReportControllerTest {
     @Test
     void shouldPrintReport() throws Exception {
         var transactions = List.of(
-                new Transaction.Builder()
+                TransactionBuilder.newInstance()
                         .transactionType(TransactionType.SALE)
                         .title("Book B")
                         .quantity(2)

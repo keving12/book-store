@@ -1,6 +1,6 @@
 package com.kgracie.mytutor.bookstore.web;
 
-import com.kgracie.mytutor.sales.domain.Book;
+import com.kgracie.mytutor.sales.domain.BookBuilder;
 import com.kgracie.mytutor.sales.repository.BookRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -29,7 +29,7 @@ class BookSaleControllerTest {
 
     @Test
     void shouldReturnSuccessMessageWhenEnoughStock() throws Exception {
-        var book = new Book.Builder()
+        var book = BookBuilder.newInstance()
                 .title(BOOK_TITLE)
                 .stock(1)
                 .price(10.00)
@@ -45,7 +45,7 @@ class BookSaleControllerTest {
 
     @Test
     void shouldReturnFailureMessageWhenNotEnoughStock() throws Exception {
-        var book = new Book.Builder()
+        var book = BookBuilder.newInstance()
                 .title(BOOK_TITLE)
                 .stock(1)
                 .price(10.00)

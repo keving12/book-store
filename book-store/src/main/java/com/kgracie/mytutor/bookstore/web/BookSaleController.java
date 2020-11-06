@@ -19,7 +19,7 @@ public class BookSaleController {
     @GetMapping(value = "/book/{title}/buy/{quantity}")
     public String buyBook(@PathVariable("title") String title,
                         @PathVariable("quantity") int quantity) {
-        return bookSalesService.processBookSale(title, quantity).getResponseMessage();
+        return bookSalesService.processBookSale(title, quantity).responseMessage();
     }
 
 

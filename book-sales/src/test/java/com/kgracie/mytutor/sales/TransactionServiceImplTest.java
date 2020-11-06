@@ -1,7 +1,7 @@
 package com.kgracie.mytutor.sales;
 
 import com.kgracie.mytutor.sales.api.TransactionService;
-import com.kgracie.mytutor.sales.domain.Transaction;
+import com.kgracie.mytutor.sales.domain.TransactionBuilder;
 import com.kgracie.mytutor.sales.domain.TransactionType;
 import com.kgracie.mytutor.sales.impl.TransactionServiceImpl;
 import com.kgracie.mytutor.sales.repository.TransactionRepository;
@@ -33,7 +33,7 @@ public class TransactionServiceImplTest {
 
     @Test
     void shouldRetrieveAllTransactions() {
-        var transaction = new Transaction.Builder()
+        var transaction = TransactionBuilder.newInstance()
                 .transactionType(TransactionType.SALE)
                 .title("Book X")
                 .quantity(6)
@@ -54,7 +54,7 @@ public class TransactionServiceImplTest {
     })
     void shouldStoreSalesTransactionWithValueAsProductOfUnitPriceAndQuantity(String transactionType, String title, int quantity,
                                                                              double unitPrice, double totalPrice) {
-        var transaction = new Transaction.Builder()
+        var transaction = TransactionBuilder.newInstance()
                 .transactionType(TransactionType.valueOf(transactionType))
                 .title(title)
                 .quantity(quantity)
@@ -73,7 +73,7 @@ public class TransactionServiceImplTest {
     })
     void shouldStorePurchaseTransactionWithValueAs70PercentOfProduceOfUnitPriceAndQuantity(String transactionType, String title, int quantity,
                                                                                            double unitPrice, double totalPrice) {
-        var transaction = new Transaction.Builder()
+        var transaction = TransactionBuilder.newInstance()
                 .transactionType(TransactionType.valueOf(transactionType))
                 .title(title)
                 .quantity(quantity)

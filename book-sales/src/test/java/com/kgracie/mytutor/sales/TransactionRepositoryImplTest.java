@@ -1,6 +1,6 @@
 package com.kgracie.mytutor.sales;
 
-import com.kgracie.mytutor.sales.domain.Transaction;
+import com.kgracie.mytutor.sales.domain.TransactionBuilder;
 import com.kgracie.mytutor.sales.domain.TransactionType;
 import com.kgracie.mytutor.sales.repository.TransactionRepository;
 import com.kgracie.mytutor.sales.repository.TransactionRepositoryImpl;
@@ -20,7 +20,7 @@ public class TransactionRepositoryImplTest {
 
     @Test
     void shouldRecordTransaction() {
-        var salesTransaction = new Transaction.Builder()
+        var salesTransaction = TransactionBuilder.newInstance()
                 .transactionType(TransactionType.SALE)
                 .title("Book A")
                 .quantity(1)

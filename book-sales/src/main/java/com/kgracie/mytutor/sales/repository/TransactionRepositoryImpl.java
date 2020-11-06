@@ -12,9 +12,7 @@ public class TransactionRepositoryImpl implements TransactionRepository {
     private List<Transaction> transactions = new ArrayList<>();
     private static TransactionRepository transactionRepository;
 
-    private TransactionRepositoryImpl() {
-
-    }
+    private TransactionRepositoryImpl() { }
 
     public static TransactionRepository getInstance() {
         if(transactionRepository == null) {
