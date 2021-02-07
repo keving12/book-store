@@ -1,5 +1,7 @@
 package com.kgracie.mytutor.bookstore.web;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kgracie.mytutor.bookstore.web.dto.BookRequest;
 import com.kgracie.mytutor.sales.domain.BookBuilder;
 import com.kgracie.mytutor.sales.repository.BookRepository;
 import org.junit.jupiter.api.Test;
@@ -14,6 +16,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -64,5 +69,38 @@ class BookSaleControllerTest {
                 .andReturn();
 
         assertThat(result.getResponse().getContentAsString()).isEqualTo("Sorry, we do not stock the book requested");
+    }
+
+    @Test
+    void shouldReturnBadRequestWhenTitleIsMissing() throws Exception {
+        var request = new BookRequest(null, 1);
+
+        var objectMapper = new ObjectMapper();
+
+        mockMvc.perform(post("/buy-book")
+                .contentType("application/json")
+                .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void shouldReturnSuccessWhenFieldsArePresent() throws Exception {
+        var book = BookBuilder.newInstance()
+                .title(BOOK_TITLE)
+                .stock(1)
+                .price(10.00)
+                .build();
+
+        given(bookRepository.fetchBook(BOOK_TITLE)).willReturn(book);
+
+        var request = new BookRequest("Book A", 1);
+
+        var objectMapper = new ObjectMapper();
+
+        mockMvc.perform(post("/buy-book")
+                .contentType("application/json")
+                .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").value("Thank you for your purchase!"));
     }
 }

@@ -8,7 +8,10 @@ dependencies {
         exclude(module: 'javax.annotation-api')
         exclude(module: 'java-annotation')
         exclude(module: 'spring-boot-starter-logging')
+        exclude(module: 'spring-boot-starter-json')
     }
+    implementation "org.springframework.boot:spring-boot-starter-validation:${springBootVersion}"
+//    implementation "jakarta.validation:jakarta.validation-api:3.0.0"
 }
 
 ext.moduleName = 'com.kgracie.mytutor.bookstore'
