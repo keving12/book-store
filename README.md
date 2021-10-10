@@ -1,4 +1,4 @@
-# mytutor-test
+# Book store
 
 To start this application navigate to the root directory of this project in a terminal window and run `./gradlew bootrun`. 
 
